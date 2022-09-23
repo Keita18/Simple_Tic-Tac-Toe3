@@ -7,6 +7,52 @@ public class Main {
         // write your code here
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        char[][] grid = new char[3][3];
+        int charIndex = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                grid[i][j] = input.charAt(charIndex);
+                charIndex++;
+            }
+        }
+        print(grid);
+        String move;
+        do {
+            var coordinates = scanner.nextLine();
+            move = move(grid, coordinates);
+            if (move != null) System.out.println(move);
+        } while (move != null);
+        print(grid);
+    }
+
+    static String move(char[][] arr, String coordinates) {
+        int col;
+        int row;
+
+        try {
+            col = Integer.parseInt(coordinates.split(" ")[0]);
+            row = Integer.parseInt(coordinates.split(" ")[1]);
+        } catch (Exception e) {
+            return  "You should enter numbers";
+        }
+        if (col > 3 || row > 3 || col < 1 || row < 1)
+            return  "Coordinates should be from 1 to 3!";
+        if (arr[--col][--row] == '_') {
+            arr[col][row] = 'X';
+            return null;
+        }
+        return "This cell is occupied! Choose another one!";
+    }
+
+    static void print(char[][] input) {
+        System.out.println("---------");
+        System.out.println("| " + input[0][0] + " " + input[0][1] + " " + input[0][2] + " |");
+        System.out.println("| " + input[1][0] + " " + input[1][1] + " " + input[1][2] + " |");
+        System.out.println("| " + input[2][0] + " " + input[2][1] + " " + input[2][2] + " |");
+        System.out.println("---------");
+    }
+    /*    static void game(String input) {
         var col = "";
         var row = "";
         var rowI = 0;
@@ -16,11 +62,11 @@ public class Main {
         var xCount = 0;
         var oCount = 0;
 
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             row = "" + input.charAt(rowI) +
                     input.charAt(++rowI) + input.charAt(++rowI);
             rowI++;
-            col = ""+ input.charAt(i) +
+            col = "" + input.charAt(i) +
                     input.charAt(i + 3) + input.charAt(i + 6);
 
             if (row.equals("XXX") || col.equals("XXX")) player1++;
@@ -32,17 +78,17 @@ public class Main {
         if (diag1.equals("OOO") || diag2.equals("OOO")) player2++;
 
         for (char c : input.toCharArray()) {
-            if (c == 'X') xCount ++;
-            if (c == 'O') oCount ++;
+            if (c == 'X') xCount++;
+            if (c == 'O') oCount++;
         }
         if (player1 == 1 && player2 == 1) {
-             result = "Impossible";
-        } else if (Math.abs(xCount - oCount) >= 2){
             result = "Impossible";
-        } else if (player1 == 1){
+        } else if (Math.abs(xCount - oCount) >= 2) {
+            result = "Impossible";
+        } else if (player1 == 1) {
             result = "X wins";
         } else if (player2 == 1) {
-            result =  "O wins";
+            result = "O wins";
         } else if (xCount + oCount == 9) {
             result = "Draw";
         } else if (xCount + oCount < 9) {
@@ -50,13 +96,5 @@ public class Main {
         }
         print(input, result);
     }
-
-    static void print(String input, String result) {
-        System.out.println("---------");
-        System.out.println("| " + input.charAt(0) + " " + input.charAt(1) + " " + input.charAt(2) + " |");
-        System.out.println("| " + input.charAt(3) + " " + input.charAt(4) + " " + input.charAt(5) + " |");
-        System.out.println("| " + input.charAt(6) + " " + input.charAt(7) + " " + input.charAt(8) + " |");
-        System.out.println("---------");
-        System.out.println(result);
-    }
+*/
 }
