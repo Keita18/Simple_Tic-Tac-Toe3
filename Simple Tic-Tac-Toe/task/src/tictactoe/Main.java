@@ -6,27 +6,34 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        char[][] grid = new char[3][3];
-        int charIndex = 0;
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                grid[i][j] = input.charAt(charIndex);
-                charIndex++;
-            }
-        }
+        char[][] grid = new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
         print(grid);
         String move;
+        String state;
+        int isDraw = 9;
+        boolean isPlayer1 = true;
         do {
-            var coordinates = scanner.nextLine();
-            move = move(grid, coordinates);
-            if (move != null) System.out.println(move);
-        } while (move != null);
-        print(grid);
+            do {
+                var coordinates = scanner.nextLine();
+                move = move(grid, coordinates, isPlayer1);
+                if (move != null) System.out.println(move);
+            } while (move != null);
+
+            state = checkState(grid);
+            print(grid);
+
+            isDraw--;
+            isPlayer1 = !isPlayer1;
+
+        } while (state == null && isDraw > 0);
+
+        if (state != null) {
+            System.out.println(state + " wins");
+        } else System.out.println("Draw");
+
     }
 
-    static String move(char[][] arr, String coordinates) {
+    static String move(char[][] arr, String coordinates, boolean isPlayer1) {
         int col;
         int row;
 
@@ -34,15 +41,34 @@ public class Main {
             col = Integer.parseInt(coordinates.split(" ")[0]);
             row = Integer.parseInt(coordinates.split(" ")[1]);
         } catch (Exception e) {
-            return  "You should enter numbers";
+            return "You should enter numbers";
         }
         if (col > 3 || row > 3 || col < 1 || row < 1)
-            return  "Coordinates should be from 1 to 3!";
+            return "Coordinates should be from 1 to 3!";
         if (arr[--col][--row] == '_') {
-            arr[col][row] = 'X';
+            if (isPlayer1) arr[col][row] = 'X';
+            else arr[col][row] = 'O';
             return null;
         }
         return "This cell is occupied! Choose another one!";
+    }
+
+    static String checkState(char[][] grid) {
+        String winner = null;
+
+        for (int i = 0; i < 3; i++) {
+            String row = "" + grid[i][0] + grid[i][1] + grid[i][2];
+            String col = "" + grid[0][i] + grid[1][i] + grid[2][i];
+
+            if (row.equals("XXX") || col.equals("XXX")) winner = "X";
+            if (row.equals("OOO") || col.equals("OOO")) winner = "O";
+        }
+        var diag1 = "" + grid[0][0] + grid[1][1] + grid[2][2];
+        var diag2 = "" + grid[2][0] + grid[1][1] + grid[0][2];
+
+        if (diag1.equals("XXX") || diag2.equals("XXX")) winner = "X";
+        if (diag1.equals("OOO") || diag2.equals("OOO")) winner = "O";
+        return winner;
     }
 
     static void print(char[][] input) {
@@ -52,49 +78,4 @@ public class Main {
         System.out.println("| " + input[2][0] + " " + input[2][1] + " " + input[2][2] + " |");
         System.out.println("---------");
     }
-    /*    static void game(String input) {
-        var col = "";
-        var row = "";
-        var rowI = 0;
-        var player1 = 0;
-        var player2 = 0;
-        var result = "";
-        var xCount = 0;
-        var oCount = 0;
-
-        for (int i = 0; i < 3; i++) {
-            row = "" + input.charAt(rowI) +
-                    input.charAt(++rowI) + input.charAt(++rowI);
-            rowI++;
-            col = "" + input.charAt(i) +
-                    input.charAt(i + 3) + input.charAt(i + 6);
-
-            if (row.equals("XXX") || col.equals("XXX")) player1++;
-            if (row.equals("OOO") || col.equals("OOO")) player2++;
-        }
-        var diag1 = "" + input.charAt(0) + input.charAt(4) + input.charAt(8);
-        var diag2 = "" + input.charAt(2) + input.charAt(4) + input.charAt(6);
-        if (diag1.equals("XXX") || diag2.equals("XXX")) player1++;
-        if (diag1.equals("OOO") || diag2.equals("OOO")) player2++;
-
-        for (char c : input.toCharArray()) {
-            if (c == 'X') xCount++;
-            if (c == 'O') oCount++;
-        }
-        if (player1 == 1 && player2 == 1) {
-            result = "Impossible";
-        } else if (Math.abs(xCount - oCount) >= 2) {
-            result = "Impossible";
-        } else if (player1 == 1) {
-            result = "X wins";
-        } else if (player2 == 1) {
-            result = "O wins";
-        } else if (xCount + oCount == 9) {
-            result = "Draw";
-        } else if (xCount + oCount < 9) {
-            result = "Game not finished";
-        }
-        print(input, result);
-    }
-*/
 }
