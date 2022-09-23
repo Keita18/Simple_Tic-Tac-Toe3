@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="17">
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-classes-java.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-generated-sources-headers-java.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-reports-tests.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-test-results.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task-build-tmp.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Simple_Tic-Tac-Toe-task.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Iterating_over_arrays-Individual_taxes.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Iterating_over_arrays-Right_Rotation.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Iterating_over_arrays-Sum_array_elements_greater_than_a_value.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Iterating_over_arrays-The_sum_of_array_elements.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Iterating_over_arrays-Theory.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Multidimensional_array-Create_cube.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Multidimensional_array-Find_the_corners.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Multidimensional_array-Reverse_elements.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.Topics-Multidimensional_array-Theory.main" target="11" />
+      <module name="Simple_Tic-Tac-Toe3.util.main" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
